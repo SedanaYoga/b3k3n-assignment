@@ -6,11 +6,11 @@ import BookPage from './pages/BookPage/BookPage'
 import Navbar from './components/Navbar/Navbar'
 
 function App() {
-  const { getCategories, getAllBooks } = useMainContext()
+  const { getCategories, getBooks } = useMainContext()
 
   useEffect(() => {
     getCategories()
-    getAllBooks()
+    getBooks()
   }, [])
 
   return (

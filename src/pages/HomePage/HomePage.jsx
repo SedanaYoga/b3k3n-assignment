@@ -21,7 +21,7 @@ const HomePage = () => {
 
   useEffect(() => {
     navigate(`/${removeSpecialChar(currentCategory.name)}`)
-  }, [currentCategory.name])
+  }, [currentCategory.name, navigate])
 
   return (
     <Container className='mt-5'>

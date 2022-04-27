@@ -6,17 +6,36 @@ import { ReactComponent as ClockIcon } from '../../assets/clock-alarm.svg'
 import { ReactComponent as BookmarkOff } from '../../assets/bookmark-off.svg'
 import { useMainContext } from '../../context/MainContext'
 import Accordion from '../../components/Accordion/Accordion'
+import { removeSpecialChar } from '../../utils/mainUtils'
 
 const BookPage = () => {
   const { category, id } = useParams()
   const [book, setBook] = useState({})
-  const { booksState } = useMainContext()
+  const {
+    booksState,
+    categoriesState: { categories },
+    getBooks,
+    setCurrentCategory,
+  } = useMainContext()
   const navigate = useNavigate()
 
-  const getBookFromContext = useCallback(() => {
-    const book = booksState.books.find((book) => book.id === +id)
-    setBook(book)
-  }, [booksState.books])
+  const paramsCategory = categories.find(
+    (cat) => removeSpecialChar(cat.name) === category
+  )
+
+  const getBookFromContext = useCallback(async () => {
+    if (paramsCategory?.id !== booksState.books[0]?.category_id) {
+      console.log(`Fetching the right books category: ${paramsCategory.id}`)
+      await getBooks(paramsCategory.id)
+      setCurrentCategory(paramsCategory)
+    } else {
+      console.log(
+        `Already using the right books Category ${booksState.books[0]?.category_id}`
+      )
+      const book = booksState.books.find((book) => book.id === +id)
+      setBook(book)
+    }
+  }, [booksState.books, id])
 
   useEffect(() => {
     getBookFromContext()
