@@ -1,11 +1,7 @@
 import axios from 'axios'
 
 const getBooksUrl = (categoryId, page = 0, size = 10) => {
-  return `https://asia-southeast2-sejutacita-app.cloudfunctions.net/fee-assessment-books?categoryId=${categoryId}&page=${page}&size=${size}`
-}
-
-const getCategoriesUrl = () => {
-  return 'https://asia-southeast2-sejutacita-app.cloudfunctions.net/fee-assessment-categories'
+  return `/fee-assessment-books?categoryId=${categoryId}&page=${page}&size=${size}`
 }
 
 export const getCategoriesData = async () => {
@@ -18,7 +14,10 @@ export const getCategoriesData = async () => {
 }
 
 export const getBooksData = async (categoryId, page, size) => {
-  const response = await fetch(getBooksUrl(categoryId, page, size))
-  const books = await response.json()
-  return books
+  try {
+    const response = await axios.get(getBooksUrl(categoryId, page, size))
+    return response.data
+  } catch (err) {
+    console.log(err)
+  }
 }

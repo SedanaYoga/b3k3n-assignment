@@ -7,11 +7,11 @@ import MainContextProvider from './context/MainContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <MainContextProvider>
-    <BrowserRouter>
-      <React.StrictMode>
+  <React.StrictMode>
+    <MainContextProvider>
+      <BrowserRouter>
         <App />
-      </React.StrictMode>
-    </BrowserRouter>
-  </MainContextProvider>
+      </BrowserRouter>
+    </MainContextProvider>
+  </React.StrictMode>
 )
