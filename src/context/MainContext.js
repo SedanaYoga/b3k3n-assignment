@@ -22,6 +22,12 @@ const MainContextProvider = ({ children }) => {
         payload: categories,
       })
     },
+    setCurrentCategory: (category) => {
+      categoriesDispatch({
+        type: 'CURRENTCATEGORY_FETCH_SUCCESS',
+        payload: category,
+      })
+    },
     getAllBooks: async () => {
       const books = await getBooksData(1)
       booksDispatch({ type: 'BOOKS_FETCH_SUCCESS', payload: books })
