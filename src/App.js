@@ -6,14 +6,11 @@ import BookPage from './pages/BookPage/BookPage'
 import Navbar from './components/Navbar/Navbar'
 
 function App() {
-  const { getCategories, getAllBooks, categoriesState, setCurrentCategory } =
-    useMainContext()
+  const { getCategories, getAllBooks } = useMainContext()
 
   useEffect(() => {
     getCategories()
     getAllBooks()
-    setCurrentCategory(categoriesState?.categories[0])
-    console.log('Request from App.js')
   }, [])
 
   return (

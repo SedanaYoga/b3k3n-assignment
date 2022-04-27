@@ -5,24 +5,29 @@ import { getBooksData } from '../../utils/mainUtils'
 import { useMainContext } from '../../context/MainContext'
 import BookCard from '../../components/BookCard/BookCard'
 
-const BookBrowser = ({ category }) => {
-  const { booksDispatch, booksState } = useMainContext()
+const BookBrowser = () => {
+  const {
+    booksDispatch,
+    booksState,
+    categoriesState: { currentCategory },
+  } = useMainContext()
 
   useEffect(() => {
     const getBookByCategory = async () => {
       try {
-        const books = await getBooksData(category.id)
+        const books = await getBooksData(currentCategory.id)
         booksDispatch({ type: 'BOOKS_FETCH_SUCCESS', payload: books })
       } catch (err) {
         console.log(err)
       }
     }
     getBookByCategory()
-  }, [booksDispatch, category])
+  }, [booksDispatch, currentCategory])
+
   return (
     <div className='mt-5'>
       <div className='d-flex flex-row justify-content-between align-items-center'>
-        <h1 className='fw-bold'>{category.name}</h1>
+        <h1 className='fw-bold'>{currentCategory.name}</h1>
         <div className='p-3 pe-0'>
           <div className='search-box p-2 px-2'>
             <div>
@@ -37,7 +42,7 @@ const BookBrowser = ({ category }) => {
         <Row className='row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1'>
           {booksState.books.map((book) => (
             <Col key={book.id} className='mb-4'>
-              <BookCard book={book} category={category} />
+              <BookCard book={book} category={currentCategory} />
             </Col>
           ))}
         </Row>
