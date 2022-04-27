@@ -18,7 +18,7 @@ const ExploreCategory = ({ changeCat }) => {
               }}
               key={cat.id}
               className={`${
-                currentCategory.id === cat.id ? 'active-cat' : ''
+                currentCategory?.id === cat.id ? 'active-cat' : ''
               } btn btn-light px-4 rounded-pill me-2 mb-2`}
             >
               {cat.name}

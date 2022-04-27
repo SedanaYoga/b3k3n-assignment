@@ -5,8 +5,13 @@ import { removeSpecialChar } from '../../utils/mainUtils.js'
 const BookCard = ({ book, category }) => {
   return (
     <LinkContainer to={`/${removeSpecialChar(category.name)}/${book.id}`}>
-      <div role='button' className='rounded-3'>
-        <img style={{ width: '100%' }} src={book.cover_url} alt={book.title} />
+      <div role='button'>
+        <img
+          className='rounded-1'
+          style={{ width: '100%' }}
+          src={book.cover_url}
+          alt={book.title}
+        />
         <p className='fw-bold mb-0'>{book.title}</p>
         <p className='mb-0'>{category.name}</p>
       </div>

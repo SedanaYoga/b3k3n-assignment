@@ -1,0 +1,40 @@
+$accordion-padding-y: 1rem;
+$accordion-padding-x: 1.25rem;
+$accordion-color: black;
+$accordion-bg: white;
+$accordion-border-color: none;
+$accordion-border-radius: none;
+// $accordion-inner-border-radius: subtract(
+//   $accordion-border-radius,
+//   $accordion-border-width
+// );
+
+// $accordion-body-padding-y: $accordion-padding-y;
+// $accordion-body-padding-x: $accordion-padding-x;
+//
+// $accordion-button-padding-y: $accordion-padding-y;
+// $accordion-button-padding-x: $accordion-padding-x;
+$accordion-button-color: black;
+$accordion-button-bg: white;
+// $accordion-transition: $btn-transition, border-radius 0.15s ease;
+$accordion-button-active-bg: white;
+$accordion-button-active-color: black;
+//
+$accordion-button-focus-border-color: none;
+$accordion-button-focus-box-shadow: none;
+
+.accordion-header {
+  border-bottom: 1px solid rgba(black, 0.2);
+  &:focus {
+    border-bottom: 1px solid rgba(black, 0.7) !important;
+  }
+}
+//
+// $accordion-icon-width: 1.25rem;
+// $accordion-icon-color: $accordion-button-color;
+// $accordion-icon-active-color: $accordion-button-active-color;
+// $accordion-icon-transition: transform 0.2s ease-in-out;
+// $accordion-icon-transform: rotate(-180deg);
+//
+// $accordion-button-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+// $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$accordion-icon-active-color}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
