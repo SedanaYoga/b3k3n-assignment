@@ -13,8 +13,6 @@ const MainContextProvider = ({ children }) => {
 
   const state = { booksState, categoriesState }
   const dispatch = {
-    booksDispatch,
-    categoriesDispatch,
     getCategories: async () => {
       const categories = await getCategoriesData()
       categoriesDispatch({
@@ -28,8 +26,11 @@ const MainContextProvider = ({ children }) => {
         payload: category,
       })
     },
-    getAllBooks: async () => {
-      const books = await getBooksData(1)
+    getBooks: async (categoryId = 1) => {
+      const books = await getBooksData(categoryId)
+      booksDispatch({ type: 'BOOKS_FETCH_SUCCESS', payload: books })
+    },
+    setBooks: (books) => {
       booksDispatch({ type: 'BOOKS_FETCH_SUCCESS', payload: books })
     },
   }

@@ -12,7 +12,7 @@ const BookCard = ({ book, category }) => {
           src={book.cover_url}
           alt={book.title}
         />
-        <p className='fw-bold mb-0'>{book.title}</p>
+        <p className='fw-bold mb-0 mt-2'>{book.title}</p>
         <p className='mb-0'>{category.name}</p>
       </div>
     </LinkContainer>

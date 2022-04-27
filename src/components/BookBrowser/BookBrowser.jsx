@@ -7,8 +7,8 @@ import BookCard from '../../components/BookCard/BookCard'
 
 const BookBrowser = () => {
   const {
-    booksDispatch,
     booksState,
+    setBooks,
     categoriesState: { currentCategory },
   } = useMainContext()
 
@@ -16,18 +16,18 @@ const BookBrowser = () => {
     const getBookByCategory = async () => {
       try {
         const books = await getBooksData(currentCategory.id)
-        booksDispatch({ type: 'BOOKS_FETCH_SUCCESS', payload: books })
+        setBooks(books)
       } catch (err) {
         console.log(err)
       }
     }
     getBookByCategory()
-  }, [booksDispatch, currentCategory])
+  }, [currentCategory])
 
   return (
     <div className='mt-5'>
       <div className='d-flex flex-row justify-content-between align-items-center'>
-        <h1 className='fw-bold'>{currentCategory.name}</h1>
+        <h1 className='fw-bold'>{currentCategory.name} Books</h1>
         <div className='p-3 pe-0'>
           <div className='search-box p-2 px-2'>
             <div>
