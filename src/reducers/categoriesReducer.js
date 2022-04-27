@@ -12,6 +12,7 @@ export function useCategoryReducer() {
         return {
           ...state,
           categories: action.payload,
+          currentCategory: action.payload[0],
           error: '',
         }
       case 'CURRENTCATEGORY_FETCH_SUCCESS':
