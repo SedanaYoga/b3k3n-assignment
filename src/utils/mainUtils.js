@@ -49,7 +49,7 @@ export const numberToShow = (currentPage, maxPages) => {
 }
 
 export const searchBooksByQuery = (books, query) => {
-  const keysToSearch = ['title']
+  const keysToSearch = ['title', 'authors']
   const filteredBook = books.filter((book) =>
     keysToSearch.some((key) => {
       if (key === 'title') {
@@ -57,9 +57,8 @@ export const searchBooksByQuery = (books, query) => {
           book[key].toString().toLowerCase().indexOf(query.toLowerCase()) > -1
         )
       } else if (key === 'authors') {
-        book[key].map(
-          (author) =>
-            author.toString().toLowerCase().indexOf(query.toLowerCase()) > -1
+        return (
+          book[key].join(' ').toLowerCase().indexOf(query.toLowerCase()) > -1
         )
       }
     })
