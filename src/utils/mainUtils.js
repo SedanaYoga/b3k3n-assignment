@@ -47,3 +47,22 @@ export const numberToShow = (currentPage, maxPages) => {
     return [currentPage - 1, currentPage, currentPage + 1]
   }
 }
+
+export const searchBooksByQuery = (books, query) => {
+  const keysToSearch = ['title']
+  const filteredBook = books.filter((book) =>
+    keysToSearch.some((key) => {
+      if (key === 'title') {
+        return (
+          book[key].toString().toLowerCase().indexOf(query.toLowerCase()) > -1
+        )
+      } else if (key === 'authors') {
+        book[key].map(
+          (author) =>
+            author.toString().toLowerCase().indexOf(query.toLowerCase()) > -1
+        )
+      }
+    })
+  )
+  return filteredBook
+}

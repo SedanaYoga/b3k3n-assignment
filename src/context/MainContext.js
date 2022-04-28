@@ -7,6 +7,7 @@ import {
   getBooksData,
   getCategoriesData,
   getMaxPages,
+  searchBooksByQuery,
 } from '../utils/mainUtils'
 
 const MainContext = createContext()
@@ -59,8 +60,12 @@ const MainContextProvider = ({ children }) => {
       paginationDispatch({
         type: 'PAGINATION_SET_SUCCESS',
         page: page,
-        books: getBooksByPage(booksState.books, page, bookToDisplay),
-        maxPages: maxPages,
+        books: !booksState.query
+          ? getBooksByPage(booksState.books, page, bookToDisplay)
+          : getBooksByPage(booksState.queriedBooks, page, bookToDisplay),
+        maxPages: !booksState.queriedBooks
+          ? maxPages
+          : getMaxPages(booksState.queriedBooks, bookToDisplay),
       })
     },
     setBooks: (books) => {
@@ -70,6 +75,14 @@ const MainContextProvider = ({ children }) => {
       paginationDispatch({
         type: 'PAGINATION_SET_SUCCESS',
         payload: currentPage,
+      })
+    },
+    searchBooks: (query) => {
+      const books = searchBooksByQuery(booksState.books, query)
+      booksDispatch({
+        type: 'BOOKS_QUERIED_SUCCESS',
+        books,
+        query,
       })
     },
   }
