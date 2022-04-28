@@ -2,7 +2,12 @@ import { createContext, useContext } from 'react'
 import { useCategoryReducer } from '../reducers/categoriesReducer'
 import { useBookReducer } from '../reducers/booksReducer'
 import { usePaginationReducer } from '../reducers/paginationReducer'
-import { getBooksData, getCategoriesData } from '../utils/mainUtils'
+import {
+  getBooksByPage,
+  getBooksData,
+  getCategoriesData,
+  getMaxPages,
+} from '../utils/mainUtils'
 
 const MainContext = createContext()
 
@@ -12,6 +17,8 @@ const MainContextProvider = ({ children }) => {
   const [booksState, booksDispatch] = useBookReducer()
   const [categoriesState, categoriesDispatch] = useCategoryReducer()
   const [paginationState, paginationDispatch] = usePaginationReducer()
+
+  const { currentPage, bookToDisplay, maxPages } = paginationState
 
   const state = { booksState, categoriesState, paginationState }
   const dispatch = {
@@ -41,6 +48,20 @@ const MainContextProvider = ({ children }) => {
     getBooks: async (categoryId = 1, size = 1000) => {
       const books = await getBooksData(categoryId, size)
       booksDispatch({ type: 'BOOKS_FETCH_SUCCESS', payload: books })
+      paginationDispatch({
+        type: 'PAGINATION_SET_SUCCESS',
+        books: getBooksByPage(books, currentPage, bookToDisplay),
+        maxPages: getMaxPages(books, bookToDisplay),
+        page: 1,
+      })
+    },
+    setPageAndShownBooks: (page) => {
+      paginationDispatch({
+        type: 'PAGINATION_SET_SUCCESS',
+        page: page,
+        books: getBooksByPage(booksState.books, page, bookToDisplay),
+        maxPages: maxPages,
+      })
     },
     setBooks: (books) => {
       booksDispatch({ type: 'BOOKS_FETCH_SUCCESS', payload: books })

@@ -3,6 +3,9 @@ import { useReducer } from 'react'
 export function usePaginationReducer() {
   const initialState = {
     currentPage: 1,
+    maxPages: 0,
+    bookToDisplay: 8,
+    currentBooks: [],
     error: '',
   }
   const paginationReducer = (state, action) => {
@@ -10,7 +13,9 @@ export function usePaginationReducer() {
       case 'PAGINATION_SET_SUCCESS':
         return {
           ...state,
-          currentPage: action.payload,
+          currentPage: action.page,
+          currentBooks: action.books,
+          maxPages: action.maxPages,
           error: '',
         }
       case 'PAGINATION_SET_ERROR':
