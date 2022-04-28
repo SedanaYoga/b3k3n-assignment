@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useMainContext } from './context/MainContext'
 import HomePage from './pages/HomePage/HomePage'
@@ -6,12 +6,17 @@ import BookPage from './pages/BookPage/BookPage'
 import Navbar from './components/Navbar/Navbar'
 
 function App() {
-  const { getCategories, getBooks } = useMainContext()
+  const { getCategories, getBooks, loadingCategories } = useMainContext()
+
+  const getFirstData = useCallback(async () => {
+    loadingCategories()
+    await getCategories()
+    // await getBooks()
+  }, [])
 
   useEffect(() => {
-    getCategories()
-    getBooks()
-  }, [])
+    getFirstData()
+  }, [getFirstData])
 
   return (
     <>

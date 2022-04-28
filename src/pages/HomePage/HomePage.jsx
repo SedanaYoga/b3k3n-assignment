@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import ExploreCategory from '../../components/ExploreCategory/ExploreCategory'
 import BookBrowser from '../../components/BookBrowser/BookBrowser'
+import PaginationComp from '../../components/PaginationComp/PaginationComp'
 import { useMainContext } from '../../context/MainContext'
 import { useNavigate } from 'react-router-dom'
 import { removeSpecialChar } from '../../utils/mainUtils'
@@ -27,6 +28,7 @@ const HomePage = () => {
     <Container className='mt-5'>
       <ExploreCategory changeCat={changeCatHandler} />
       <BookBrowser changeCat={changeCatHandler} />
+      <PaginationComp />
     </Container>
   )
 }

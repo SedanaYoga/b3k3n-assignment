@@ -86,4 +86,10 @@ $border-radius-sm: 1rem;
 $border-radius-lg: 2rem;
 $border-radius-pill: 3rem;
 
+$paragraph-margin-bottom: 0 !default;
+p {
+  margin-top: 0;
+  margin-bottom: $paragraph-margin-bottom;
+}
+
 @import '~bootstrap/scss/bootstrap';

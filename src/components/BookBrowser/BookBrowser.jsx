@@ -1,28 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
-import { getBooksData } from '../../utils/mainUtils'
 import { useMainContext } from '../../context/MainContext'
 import BookCard from '../../components/BookCard/BookCard'
 
 const BookBrowser = () => {
   const {
-    booksState,
-    setBooks,
+    booksState: { books, isLoading },
+    getBooks,
     categoriesState: { currentCategory },
+    loadingBooks,
   } = useMainContext()
 
-  useEffect(() => {
-    const getBookByCategory = async () => {
-      try {
-        const books = await getBooksData(currentCategory.id)
-        setBooks(books)
-      } catch (err) {
-        console.log(err)
-      }
+  const getBookByCategory = useCallback(async () => {
+    try {
+      loadingBooks()
+      await getBooks(currentCategory.id)
+    } catch (err) {
+      console.log(err)
     }
-    getBookByCategory()
   }, [currentCategory])
+
+  useEffect(() => {
+    if (books[0]?.category_id !== currentCategory?.id) {
+      getBookByCategory()
+    }
+  }, [getBookByCategory])
 
   return (
     <div className='mt-5'>
@@ -39,13 +42,17 @@ const BookBrowser = () => {
       </div>
 
       <div className='mt-4'>
-        <Row className='row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1'>
-          {booksState.books.map((book) => (
-            <Col key={book.id} className='mb-4'>
-              <BookCard book={book} category={currentCategory} />
-            </Col>
-          ))}
-        </Row>
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <Row className='row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1'>
+            {books.slice(0, 8).map((book) => (
+              <Col key={book.id} className='mb-4'>
+                <BookCard book={book} category={currentCategory} />
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
     </div>
   )

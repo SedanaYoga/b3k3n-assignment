@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const getBooksUrl = (categoryId, page = 0, size = 10) => {
+const getBooksUrl = (categoryId, size = 1000, page = 0) => {
   return `/fee-assessment-books?categoryId=${categoryId}&page=${page}&size=${size}`
 }
 
@@ -14,9 +14,9 @@ export const getCategoriesData = async () => {
   }
 }
 
-export const getBooksData = async (categoryId, page, size) => {
+export const getBooksData = async (categoryId, size = 1000, page) => {
   try {
-    const response = await axios.get(getBooksUrl(categoryId, page, size))
+    const response = await axios.get(getBooksUrl(categoryId, size, page))
     console.log(`Fetching Books with Category: ${categoryId}`)
     return response.data
   } catch (err) {

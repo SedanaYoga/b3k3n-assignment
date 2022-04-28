@@ -19,14 +19,16 @@ const BookPage = () => {
   } = useMainContext()
   const navigate = useNavigate()
 
-  const paramsCategory = categories.find(
-    (cat) => removeSpecialChar(cat.name) === category
-  )
-
   const getBookFromContext = useCallback(async () => {
-    if (paramsCategory?.id !== booksState.books[0]?.category_id) {
-      console.log(`Fetching the right books category: ${paramsCategory.id}`)
-      await getBooks(paramsCategory.id)
+    const paramsCategory = categories.find(
+      (cat) => removeSpecialChar(cat.name) === category
+    )
+    if (
+      paramsCategory?.id !== booksState.books[0]?.category_id ||
+      paramsCategory?.id === undefined
+    ) {
+      console.log(`Fetching the right books category: ${paramsCategory?.id}`)
+      await getBooks(paramsCategory?.id)
       setCurrentCategory(paramsCategory)
     } else {
       console.log(
