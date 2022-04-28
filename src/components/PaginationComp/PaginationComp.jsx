@@ -21,7 +21,9 @@ const PaginationComp = () => {
   }
 
   return (
-    <div className='pagination-container w-100 d-flex flex-row justify-content-center align-items-center mb-5 gap-3'>
+    <div
+      className={` pagination-container w-100 d-flex flex-row justify-content-center align-items-center mb-5 gap-3`}
+    >
       <div
         className={`next-pagination d-flex flex-row justify-content-center align-items-center ${
           currentPage === 1 ? 'disable-pagination' : 'active-pagination'
@@ -31,7 +33,11 @@ const PaginationComp = () => {
         <PrevIcon />
         <p>Prev</p>
       </div>
-      <div className='d-flex page-num-pagination flex-row justify-content-center align-items-center gap-3 active-pagination'>
+      <div
+        className={`${
+          maxPages === 1 ? 'invisible' : ''
+        } d-flex page-num-pagination flex-row justify-content-center align-items-center gap-3 active-pagination`}
+      >
         {numberToShow(currentPage, maxPages).map((num, index) => (
           <p
             role='button'

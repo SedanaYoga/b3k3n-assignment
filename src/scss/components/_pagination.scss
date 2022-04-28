@@ -1,5 +1,6 @@
 .pagination-container {
   font-weight: 600;
+  user-select: none;
 
   .next-pagination {
     cursor: pointer;

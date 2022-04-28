@@ -3,6 +3,7 @@ import { Col, Row } from 'react-bootstrap'
 import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
 import { useMainContext } from '../../context/MainContext'
 import BookCard from '../../components/BookCard/BookCard'
+import PaginationComp from '../../components/PaginationComp/PaginationComp'
 
 const BookBrowser = () => {
   const {
@@ -55,6 +56,7 @@ const BookBrowser = () => {
           </Row>
         )}
       </div>
+      <PaginationComp />
     </div>
   )
 }
