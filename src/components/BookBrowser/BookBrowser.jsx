@@ -10,6 +10,7 @@ const BookBrowser = () => {
     getBooks,
     categoriesState: { currentCategory },
     loadingBooks,
+    paginationState: { currentPage, currentBooks },
   } = useMainContext()
 
   const getBookByCategory = useCallback(async () => {
@@ -46,7 +47,7 @@ const BookBrowser = () => {
           <h1>Loading...</h1>
         ) : (
           <Row className='row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1'>
-            {books.slice(0, 8).map((book) => (
+            {currentBooks.map((book) => (
               <Col key={book.id} className='mb-4'>
                 <BookCard book={book} category={currentCategory} />
               </Col>

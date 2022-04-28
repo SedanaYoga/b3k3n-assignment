@@ -27,3 +27,23 @@ export const getBooksData = async (categoryId, size = 1000, page) => {
 export const removeSpecialChar = (text) => {
   return text.replace(/[ $#@%!&*()]/g, '').toLowerCase()
 }
+
+export const getBooksByPage = (books, currPage, shownBooks) => {
+  const start = (currPage - 1) * shownBooks
+  const end = shownBooks * currPage
+  return books.slice(start, end)
+}
+
+export const getMaxPages = (books, bookToDisplay) => {
+  return Math.ceil(books.length / bookToDisplay)
+}
+
+export const numberToShow = (currentPage, maxPages) => {
+  if (currentPage === 1) {
+    return [currentPage, currentPage + 1, currentPage + 2]
+  } else if (currentPage === maxPages) {
+    return [maxPages - 2, maxPages - 1, maxPages]
+  } else {
+    return [currentPage - 1, currentPage, currentPage + 1]
+  }
+}

@@ -6,12 +6,11 @@ import BookPage from './pages/BookPage/BookPage'
 import Navbar from './components/Navbar/Navbar'
 
 function App() {
-  const { getCategories, getBooks, loadingCategories } = useMainContext()
+  const { getCategories, loadingCategories } = useMainContext()
 
   const getFirstData = useCallback(async () => {
     loadingCategories()
     await getCategories()
-    // await getBooks()
   }, [])
 
   useEffect(() => {

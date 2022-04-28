@@ -1,25 +1,53 @@
 import React from 'react'
 import { ReactComponent as PrevIcon } from '../../assets/previous-icon.svg'
 import { ReactComponent as NextIcon } from '../../assets/next-icon.svg'
+import { useMainContext } from '../../context/MainContext'
+import { numberToShow } from '../../utils/mainUtils'
 
 const PaginationComp = () => {
+  const {
+    paginationState: { currentPage, maxPages },
+    setPageAndShownBooks,
+  } = useMainContext()
+
+  const changePage = (action) => {
+    if (typeof action === 'string') {
+      action === 'next'
+        ? setPageAndShownBooks(currentPage + 1)
+        : setPageAndShownBooks(currentPage - 1)
+    } else {
+      setPageAndShownBooks(action)
+    }
+  }
+
   return (
-    <div className='w-100 d-flex flex-row justify-content-center align-items-center mb-5 gap-3'>
+    <div className='pagination-container w-100 d-flex flex-row justify-content-center align-items-center mb-5 gap-3'>
       <div
-        role='button'
-        className='d-flex flex-row justify-content-center align-items-center'
+        className={`next-pagination d-flex flex-row justify-content-center align-items-center ${
+          currentPage === 1 ? 'disable-pagination' : 'active-pagination'
+        }`}
+        onClick={() => changePage('prev')}
       >
         <PrevIcon />
         <p>Prev</p>
       </div>
-      <div className='d-flex flex-row justify-content-center align-items-center gap-3'>
-        <p role='button'>1</p>
-        <p role='button'>2</p>
-        <p role='button'>3</p>
+      <div className='d-flex page-num-pagination flex-row justify-content-center align-items-center gap-3 active-pagination'>
+        {numberToShow(currentPage, maxPages).map((num, index) => (
+          <p
+            role='button'
+            className={currentPage === num ? 'active-number' : ''}
+            key={index}
+            onClick={() => changePage(num)}
+          >
+            {num}
+          </p>
+        ))}
       </div>
       <div
-        role='button'
-        className='d-flex flex-row justify-content-center align-items-center'
+        className={`prev-pagination d-flex flex-row justify-content-center align-items-center ${
+          currentPage === maxPages ? 'disable-pagination' : 'active-pagination'
+        }`}
+        onClick={() => changePage('next')}
       >
         <p>Next</p>
         <NextIcon />
