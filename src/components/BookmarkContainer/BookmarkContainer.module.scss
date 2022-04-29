@@ -1,0 +1,38 @@
+.bookmarkContainer {
+  // visibility: hidden;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: 400px;
+  min-height: 50px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 0.5rem;
+  color: black;
+  z-index: 99;
+  .bookmarkCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    gap: 1.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border-bottom: 3px solid rgba(black, 0.1);
+    img {
+      border-radius: 5px;
+    }
+    .bookmarkDetail {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 75px;
+      width: 100%;
+      h5 {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

@@ -6,11 +6,15 @@ import BookPage from './pages/BookPage/BookPage'
 import Navbar from './components/Navbar/Navbar'
 
 function App() {
-  const { getCategories, loadingCategories } = useMainContext()
+  const { getCategories, loadingCategories, setBookmarks } = useMainContext()
 
   const getFirstData = useCallback(async () => {
     loadingCategories()
     await getCategories()
+    const bookmarks = JSON.parse(localStorage.getItem('bookmarks'))
+    if (bookmarks) {
+      setBookmarks(bookmarks)
+    }
   }, [])
 
   useEffect(() => {

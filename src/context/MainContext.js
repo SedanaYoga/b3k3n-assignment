@@ -2,6 +2,7 @@ import { createContext, useContext } from 'react'
 import { useCategoryReducer } from '../reducers/categoriesReducer'
 import { useBookReducer } from '../reducers/booksReducer'
 import { usePaginationReducer } from '../reducers/paginationReducer'
+import { useBookmarkReducer } from '../reducers/bookmarkReducer'
 import {
   getBooksByPage,
   getBooksData,
@@ -18,6 +19,7 @@ const MainContextProvider = ({ children }) => {
   const [booksState, booksDispatch] = useBookReducer()
   const [categoriesState, categoriesDispatch] = useCategoryReducer()
   const [paginationState, paginationDispatch] = usePaginationReducer()
+  const [bookmarkState, bookmarkDispatch] = useBookmarkReducer()
 
   const { currentPage, bookToDisplay, maxPages } = paginationState
 
@@ -85,6 +87,19 @@ const MainContextProvider = ({ children }) => {
         books,
         query,
       })
+    },
+    setBookmarks: (bookmarks) => {
+      bookmarkDispatch({ type: 'BOOKMARK_SET_SUCCESS', payload: bookmarks })
+    },
+    addBookmarks: (book) => {
+      localStorage.setItem(
+        'bookmarks',
+        JSON.stringify([...bookmarkState.bookmarkBooks, book])
+      )
+      bookmarkDispatch({ type: 'BOOKMARK_ADD_SUCCESS', payload: book })
+    },
+    removeBookmarks: (id, category_id) => {
+      bookmarkDispatch({ type: 'BOOKMARK_REMOVE_SUCCESS', id, category_id })
     },
   }
   const value = { ...state, ...dispatch }
