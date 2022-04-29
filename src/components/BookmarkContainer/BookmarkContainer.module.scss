@@ -1,16 +1,21 @@
 .bookmarkContainer {
-  // visibility: hidden;
   position: absolute;
   top: 45px;
   right: 0;
   width: 400px;
-  min-height: 50px;
+  max-height: 456px;
   background: white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 0.5rem;
   color: black;
   z-index: 99;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   .bookmarkCard {
     display: flex;
     justify-content: space-between;

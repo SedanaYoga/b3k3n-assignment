@@ -23,9 +23,7 @@ export function useBookmarkReducer() {
         return {
           ...state,
           bookmarkBooks: state.bookmarkBooks.filter(
-            (bookmark) =>
-              bookmark.id !== action.id &&
-              bookmark.category_id !== action.category_id
+            (bookmark) => bookmark.id.toString() !== action.id.toString()
           ),
           error: '',
         }

@@ -23,7 +23,7 @@ const MainContextProvider = ({ children }) => {
 
   const { currentPage, bookToDisplay, maxPages } = paginationState
 
-  const state = { booksState, categoriesState, paginationState }
+  const state = { booksState, categoriesState, paginationState, bookmarkState }
   const dispatch = {
     loadingCategories: () => {
       categoriesDispatch({
@@ -92,14 +92,22 @@ const MainContextProvider = ({ children }) => {
       bookmarkDispatch({ type: 'BOOKMARK_SET_SUCCESS', payload: bookmarks })
     },
     addBookmarks: (book) => {
+      bookmarkDispatch({ type: 'BOOKMARK_ADD_SUCCESS', payload: book })
       localStorage.setItem(
         'bookmarks',
         JSON.stringify([...bookmarkState.bookmarkBooks, book])
       )
-      bookmarkDispatch({ type: 'BOOKMARK_ADD_SUCCESS', payload: book })
     },
-    removeBookmarks: (id, category_id) => {
-      bookmarkDispatch({ type: 'BOOKMARK_REMOVE_SUCCESS', id, category_id })
+    removeBookmark: (id) => {
+      bookmarkDispatch({ type: 'BOOKMARK_REMOVE_SUCCESS', id })
+      localStorage.setItem(
+        'bookmarks',
+        JSON.stringify(
+          bookmarkState.bookmarkBooks.filter(
+            (bookmark) => bookmark.id.toString() !== id.toString()
+          )
+        )
+      )
     },
   }
   const value = { ...state, ...dispatch }
