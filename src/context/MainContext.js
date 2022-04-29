@@ -55,6 +55,7 @@ const MainContextProvider = ({ children }) => {
         maxPages: getMaxPages(books, bookToDisplay),
         page: 1,
       })
+      booksDispatch({ type: 'BOOKS_QUERIED_SUCCESS', books, query: '' })
     },
     setPageAndShownBooks: (page) => {
       paginationDispatch({

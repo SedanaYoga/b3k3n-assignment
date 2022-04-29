@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
 import { useMainContext } from '../../context/MainContext'
+import { ReactComponent as RemoveQueryIcon } from '../../assets/close-icon.svg'
 
 const SearchComp = () => {
   const {
@@ -18,6 +19,11 @@ const SearchComp = () => {
       searchBooks(queryInput)
     }
   }
+
+  const resetQueryHandler = () => {
+    searchBooks('')
+  }
+
   useEffect(() => {
     setQueryInput(query)
   }, [query])
@@ -34,6 +40,11 @@ const SearchComp = () => {
           value={queryInput}
           onKeyUp={keyPressHandler}
         ></input>
+        {queryInput && (
+          <div className='remove-query-icon' onClick={resetQueryHandler}>
+            <RemoveQueryIcon />
+          </div>
+        )}
       </div>
     </div>
   )
