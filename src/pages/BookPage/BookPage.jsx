@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ReactComponent as BackIcon } from '../../assets/back-icon.svg'
 import { ReactComponent as ClockIcon } from '../../assets/clock-alarm.svg'
 import { ReactComponent as BookmarkOff } from '../../assets/bookmark-off.svg'
+import { ReactComponent as BookmarkOn } from '../../assets/bookmark-on.svg'
 import { useMainContext } from '../../context/MainContext'
 import Accordion from '../../components/Accordion/Accordion'
 import { removeSpecialChar } from '../../utils/mainUtils'
@@ -17,6 +18,9 @@ const BookPage = () => {
     categoriesState: { categories },
     getBooks,
     setCurrentCategory,
+    addBookmarks,
+    removeBookmark,
+    bookmarkState: { bookmarkBooks },
   } = useMainContext()
   const navigate = useNavigate()
 
@@ -36,6 +40,7 @@ const BookPage = () => {
         `Already using the right books Category ${booksState.books[0]?.category_id}`
       )
       const book = booksState.books.find((book) => book.id === +id)
+
       setBook(book)
       setCurrentCategory(paramsCategory)
       setIsLoadingBook(false)
@@ -46,6 +51,16 @@ const BookPage = () => {
     getBookFromContext()
     console.log('Context Request from BookPage.jsx')
   }, [getBookFromContext])
+
+  const toggleBookmarkHandler = () => {
+    if (bookmarkBooks.map(({ id }) => id).includes(book.id) === false) {
+      const { description, sections, audio_length, ...dataToSave } = book
+      addBookmarks(dataToSave)
+    } else {
+      console.log('Book is Bookmarked, removing')
+      removeBookmark(book.id)
+    }
+  }
 
   return (
     <Container className='mt-3'>
@@ -84,8 +99,14 @@ const BookPage = () => {
               </div>
               <h5 className='fw-bold mt-4'>About this book</h5>
               <p>{book?.description}</p>
-              <div className='position-absolute top-0 end-0'>
-                <BookmarkOff />
+              <div className='position-absolute top-0 start-0'>
+                <div className='btn' onClick={toggleBookmarkHandler}>
+                  {bookmarkBooks.map(({ id }) => id).includes(book.id) ? (
+                    <BookmarkOn />
+                  ) : (
+                    <BookmarkOff />
+                  )}
+                </div>
               </div>
             </Col>
           </Row>
