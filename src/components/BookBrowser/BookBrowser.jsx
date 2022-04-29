@@ -1,17 +1,18 @@
 import React, { useEffect, useCallback } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg'
 import { useMainContext } from '../../context/MainContext'
 import BookCard from '../../components/BookCard/BookCard'
 import PaginationComp from '../../components/PaginationComp/PaginationComp'
+import SearchComp from '../../components/SearchComp/SearchComp'
 
 const BookBrowser = () => {
   const {
-    booksState: { books, isLoading },
+    booksState: { books, query, isLoading },
     getBooks,
     categoriesState: { currentCategory },
     loadingBooks,
-    paginationState: { currentPage, currentBooks },
+    setPageAndShownBooks,
+    paginationState: { currentBooks },
   } = useMainContext()
 
   const getBookByCategory = useCallback(async () => {
@@ -27,20 +28,14 @@ const BookBrowser = () => {
     if (books[0]?.category_id !== currentCategory?.id) {
       getBookByCategory()
     }
-  }, [getBookByCategory])
+    setPageAndShownBooks(1)
+  }, [getBookByCategory, query])
 
   return (
     <div className='mt-5'>
       <div className='d-flex flex-row justify-content-between align-items-center'>
         <h1 className='fw-bold'>{currentCategory.name} Books</h1>
-        <div className='p-3 pe-0'>
-          <div className='search-box p-2 px-2'>
-            <div>
-              <SearchIcon />
-            </div>
-            <input type='text' placeholder='search title or author'></input>
-          </div>
-        </div>
+        <SearchComp />
       </div>
 
       <div className='mt-4'>

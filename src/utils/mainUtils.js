@@ -39,11 +39,33 @@ export const getMaxPages = (books, bookToDisplay) => {
 }
 
 export const numberToShow = (currentPage, maxPages) => {
-  if (currentPage === 1) {
+  if (maxPages === 2 && currentPage === 1) {
+    return [currentPage, maxPages]
+  } else if (maxPages === 2 && currentPage === maxPages) {
+    return [maxPages - 1, maxPages]
+  } else if (currentPage === 1) {
     return [currentPage, currentPage + 1, currentPage + 2]
   } else if (currentPage === maxPages) {
     return [maxPages - 2, maxPages - 1, maxPages]
   } else {
     return [currentPage - 1, currentPage, currentPage + 1]
   }
+}
+
+export const searchBooksByQuery = (books, query) => {
+  const keysToSearch = ['title', 'authors']
+  const filteredBook = books.filter((book) =>
+    keysToSearch.some((key) => {
+      if (key === 'title') {
+        return (
+          book[key].toString().toLowerCase().indexOf(query.toLowerCase()) > -1
+        )
+      } else if (key === 'authors') {
+        return (
+          book[key].join(' ').toLowerCase().indexOf(query.toLowerCase()) > -1
+        )
+      }
+    })
+  )
+  return filteredBook
 }

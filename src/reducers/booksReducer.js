@@ -3,6 +3,8 @@ import { useReducer } from 'react'
 export function useBookReducer() {
   const initialState = {
     books: [],
+    query: '',
+    queriedBooks: [],
     isLoading: false,
     error: '',
   }
@@ -21,6 +23,13 @@ export function useBookReducer() {
           isLoading: false,
           books: action.payload,
           error: '',
+        }
+      case 'BOOKS_QUERIED_SUCCESS':
+        return {
+          ...state,
+          isLoading: false,
+          queriedBooks: action.books,
+          query: action.query,
         }
       case 'BOOKS_FETCH_ERROR':
         return {

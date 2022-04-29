@@ -10,6 +10,8 @@ const HomePage = () => {
   const {
     categoriesState: { categories, currentCategory },
     setCurrentCategory,
+    setPageAndShownBooks,
+    paginationState: { currentPage },
   } = useMainContext()
   const navigate = useNavigate()
 
@@ -20,6 +22,7 @@ const HomePage = () => {
   }
 
   useEffect(() => {
+    setPageAndShownBooks(currentPage)
     navigate(`/${removeSpecialChar(currentCategory.name)}`)
   }, [currentCategory.name, navigate])
 
