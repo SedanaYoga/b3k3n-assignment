@@ -7,7 +7,7 @@ import SearchComp from '../../components/SearchComp/SearchComp'
 
 const BookBrowser = () => {
   const {
-    booksState: { books, query, isLoading },
+    booksState: { books, query, isLoading, queriedBooks },
     getBooks,
     categoriesState: { currentCategory },
     loadingBooks,
@@ -41,6 +41,8 @@ const BookBrowser = () => {
       <div className='mt-4'>
         {isLoading ? (
           <h1>Loading...</h1>
+        ) : queriedBooks.length === 0 ? (
+          <h2 className='text-center p-5'>No Result found</h2>
         ) : (
           <Row className='row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1'>
             {currentBooks.map((book) => (
