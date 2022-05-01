@@ -113,4 +113,4 @@ Sedana Yoga - [Twitter](https://twitter.com/Cok_Yoga)
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[preview]: docs/preview.mp4
+[preview]: docs/preview.gif
