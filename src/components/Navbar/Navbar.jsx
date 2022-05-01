@@ -23,7 +23,7 @@ const NavBar = () => {
         <div onClick={toggleBookmarkHandler} className='ms-auto navbar-menu'>
           <div className='w-100 bookmark'>
             <div className='btn fw-bold w-100 bookmark__button'>
-              {lgScreen ? '📕 Bookmarks' : '📕'}
+              {lgScreen ? '📕 Bookmark' : '📕'}
             </div>
             <BookmarkContainer isDisplayed={isDisplayed} />
           </div>
