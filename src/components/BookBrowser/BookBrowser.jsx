@@ -22,7 +22,7 @@ const BookBrowser = () => {
     } catch (err) {
       console.log(err)
     }
-  }, [currentCategory])
+  }, [currentCategory.id])
 
   useEffect(() => {
     if (books[0]?.category_id !== currentCategory?.id) {

@@ -32,13 +32,9 @@ const BookPage = () => {
       paramsCategory?.id !== booksState.books[0]?.category_id ||
       paramsCategory?.id === undefined
     ) {
-      console.log(`Fetching the right books category: ${paramsCategory?.id}`)
       await getBooks(paramsCategory?.id)
       setCurrentCategory(paramsCategory)
-    } else {
-      console.log(
-        `Already using the right books Category ${booksState.books[0]?.category_id}`
-      )
+    } else if (paramsCategory?.id === booksState.books[0]?.category_id) {
       const book = booksState.books.find((book) => book.id === +id)
 
       setBook(book)
@@ -49,7 +45,6 @@ const BookPage = () => {
 
   useEffect(() => {
     getBookFromContext()
-    console.log('Context Request from BookPage.jsx')
   }, [getBookFromContext])
 
   const toggleBookmarkHandler = () => {
@@ -57,7 +52,6 @@ const BookPage = () => {
       const { description, sections, audio_length, ...dataToSave } = book
       addBookmarks(dataToSave)
     } else {
-      console.log('Book is Bookmarked, removing')
       removeBookmark(book.id)
     }
   }
