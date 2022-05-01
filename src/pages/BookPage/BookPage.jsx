@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row, Spinner } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ReactComponent as BackIcon } from '../../assets/back-icon.svg'
 import { ReactComponent as ClockIcon } from '../../assets/clock-alarm.svg'
@@ -65,7 +65,7 @@ const BookPage = () => {
   return (
     <Container className='mt-3'>
       {isLoadingBook ? (
-        <h1>Loading...</h1>
+        <Spinner animation='border' />
       ) : (
         <div>
           <div

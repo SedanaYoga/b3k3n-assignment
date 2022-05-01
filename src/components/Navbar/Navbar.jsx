@@ -19,10 +19,10 @@ const NavBar = () => {
         </LinkContainer>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='ms-auto'>
-            <div className='position-relative'>
+          <Nav className='ms-auto navbar-menu'>
+            <div className='position-relative w-100 bookmark'>
               <div
-                className='btn btn-greeny rounded-pill px-4 '
+                className='btn btn-greeny rounded-pill w-100 px-4 bookmark__button'
                 onClick={toggleBookmarkHandler}
               >
                 Bookmarks

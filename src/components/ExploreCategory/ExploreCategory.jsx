@@ -1,5 +1,6 @@
 import React from 'react'
 import { useMainContext } from '../../context/MainContext'
+import { Spinner } from 'react-bootstrap'
 
 const ExploreCategory = ({ changeCat }) => {
   const {
@@ -7,12 +8,12 @@ const ExploreCategory = ({ changeCat }) => {
   } = useMainContext()
 
   return (
-    <div>
+    <div className='explore-category'>
       <h1 className='fw-bold'>Explore Categories</h1>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <Spinner animation='border' />
       ) : (
-        <div className='d-flex flex-row flex-wrap'>
+        <div className='d-flex flex-row flex-wrap mt-3'>
           {categories &&
             categories.map((cat) => (
               <div
@@ -22,7 +23,7 @@ const ExploreCategory = ({ changeCat }) => {
                 key={cat.id}
                 className={`${
                   currentCategory?.id === cat.id ? 'active-cat' : ''
-                } btn btn-light px-4 rounded-pill me-2 mb-2`}
+                } category-card btn btn-light px-4 rounded-pill me-2 mb-2 `}
               >
                 {cat.name}
               </div>

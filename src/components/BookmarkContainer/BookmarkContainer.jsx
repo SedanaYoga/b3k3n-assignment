@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './BookmarkContainer.module.scss'
+// import styles from './BookmarkContainer.module.scss'
 import { ReactComponent as RemoveBookmark } from '../../assets/trash-icon.svg'
 import { useMainContext } from '../../context/MainContext'
 import { useNavigate } from 'react-router-dom'
@@ -27,8 +27,8 @@ const BookmarkContainer = ({ isDisplayed }) => {
   return (
     <div>
       <div
-        style={{ visibility: `${isDisplayed ? 'visible' : 'hidden'}` }}
-        className={styles.bookmarkContainer}
+        style={{ display: `${isDisplayed ? 'block' : 'none'}` }}
+        className='bookmarkContainer'
       >
         {bookmarkBooks.length === 0 ? (
           <div className='d-flex justify-content-center align-item-center p-3'>
@@ -39,7 +39,7 @@ const BookmarkContainer = ({ isDisplayed }) => {
             <div
               role='button'
               key={bookmark.id}
-              className={styles.bookmarkCard}
+              className='bookmarkCard'
               onClick={() => goToSelectedBookmark(bookmark)}
             >
               <img
@@ -47,7 +47,7 @@ const BookmarkContainer = ({ isDisplayed }) => {
                 src={bookmark.cover_url}
                 alt='how i built this'
               />
-              <div className={styles.bookmarkDetail}>
+              <div className='bookmarkDetail'>
                 <h5>{bookmark.title}</h5>
                 <p>
                   {

@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Col, Row, Spinner } from 'react-bootstrap'
 import { useMainContext } from '../../context/MainContext'
 import BookCard from '../../components/BookCard/BookCard'
 import PaginationComp from '../../components/PaginationComp/PaginationComp'
@@ -33,18 +33,18 @@ const BookBrowser = () => {
 
   return (
     <div className='mt-5'>
-      <div className='d-flex flex-row justify-content-between align-items-center'>
+      <div className='d-flex flex-lg-row flex-column justify-content-between align-items-center text-gfold-start text-center'>
         <h1 className='fw-bold'>{currentCategory.name} Books</h1>
         <SearchComp />
       </div>
 
-      <div className='mt-4'>
+      <div className='mt-4 position-relative'>
         {isLoading ? (
-          <h1>Loading...</h1>
+          <Spinner animation='border' />
         ) : queriedBooks.length === 0 ? (
           <h2 className='text-center p-5'>No Result found</h2>
         ) : (
-          <Row className='row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1'>
+          <Row className='row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2'>
             {currentBooks.map((book) => (
               <Col key={book.id} className='mb-4'>
                 <BookCard book={book} category={currentCategory} />
