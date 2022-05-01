@@ -7,7 +7,6 @@ import {
 import { useMediaQuery } from 'react-responsive'
 
 const BookCard = ({ book, category }) => {
-  // const gfoldScreen = useMediaQuery({ query: 'min-width: 281px' })
   const ipseScreen = useMediaQuery({ query: 'min-width: 376px' })
   const smScreen = useMediaQuery({ query: '(min-width: 576px)' })
   const mdScreen = useMediaQuery({ query: '(min-width: 768px)' })

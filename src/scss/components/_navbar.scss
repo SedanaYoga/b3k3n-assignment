@@ -1,9 +1,15 @@
 .bookmark {
   font-size: 1rem * 0.6;
   &__button {
-    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    padding: 0;
+    border: none;
     @include media-breakpoint-up(lg) {
       margin-top: 0;
+      border: 1px solid gray;
+      font-size: 1rem;
+      padding: 10px;
     }
   }
   @include media-breakpoint-up(gfold) {
