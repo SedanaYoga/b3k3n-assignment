@@ -67,28 +67,27 @@ const BookPage = () => {
       {isLoadingBook ? (
         <Spinner animation='border' />
       ) : (
-        <div>
+        <div className='book-page'>
           <div
             role='button'
             onClick={() => navigate(`/${category}`)}
             className='d-flex flex-row align-items-center'
           >
             <BackIcon />
-            <p className='m-0 ms-2 fw-bold'>Back to browse</p>
+            <h5 className='m-0 ms-2 fw-bold'>Back to browse</h5>
           </div>
-          <Row className='mt-5'>
-            <Col>
-              <Row>
-                <Col className='w-100 offset-4 col-8'>
-                  <img
-                    className='w-50 rounded-1'
-                    src={book?.cover_url}
-                    alt={book?.title}
-                  />
-                </Col>
-              </Row>
+          <Row className='mt-4 mt-md-5 df-flex justify-content-center align-items-center flex-column flex-md-row position-relative'>
+            <Col xs={6} md={{ offset: 2, span: 3 }} className='mb-4 mb-md-0'>
+              <img
+                className='w-100 rounded-1'
+                src={book?.cover_url}
+                alt={book?.title}
+              />
             </Col>
-            <Col className='d-flex flex-column justify-content-center position-relative'>
+            <Col
+              md={{ offset: 1 }}
+              className='d-flex flex-column justify-content-center'
+            >
               <h3 className='fw-bold'>{book?.title}</h3>
               <p>{book?.authors?.join(', ')}</p>
               <div className='d-flex flex-row align-items-center w-100 border-top border-bottom py-1'>
@@ -99,7 +98,7 @@ const BookPage = () => {
               </div>
               <h5 className='fw-bold mt-4'>About this book</h5>
               <p>{book?.description}</p>
-              <div className='position-absolute top-0 start-0'>
+              <div className='position-absolute top-0 end-0'>
                 <div className='btn' onClick={toggleBookmarkHandler}>
                   {bookmarkBooks.map(({ id }) => id).includes(book.id) ? (
                     <BookmarkOn />
