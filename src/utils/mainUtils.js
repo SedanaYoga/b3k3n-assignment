@@ -69,3 +69,7 @@ export const searchBooksByQuery = (books, query) => {
   })
   return filteredBook
 }
+
+export const responsiveBookTitle = (title, numOfChar) => {
+  return title.length >= numOfChar ? `${title.slice(0, numOfChar)}...` : title
+}

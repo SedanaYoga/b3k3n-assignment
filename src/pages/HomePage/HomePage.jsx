@@ -27,7 +27,7 @@ const HomePage = () => {
   }, [currentCategory.name, navigate])
 
   return (
-    <Container className='mt-5'>
+    <Container className='mt-5 px-gfold-4 px-ipse-4 px-4 home-page'>
       <ExploreCategory changeCat={changeCatHandler} />
       <BookBrowser changeCat={changeCatHandler} />
     </Container>

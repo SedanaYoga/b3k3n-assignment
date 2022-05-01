@@ -1,0 +1,32 @@
+.home-page {
+  h1 {
+    font-size: 1.4rem;
+    text-align: center;
+    @include media-breakpoint-up(gfold) {
+      font-size: 1rem * 2;
+    }
+    @include media-breakpoint-up(ipse) {
+      font-size: 1rem * 2.3;
+    }
+    @include media-breakpoint-up(sm) {
+      font-size: 1rem * 2.5;
+    }
+    @include media-breakpoint-up(lg) {
+      text-align: start;
+    }
+  }
+  .category-card,
+  p,
+  div {
+    font-size: 1rem * 0.6;
+    @include media-breakpoint-up(gfold) {
+      font-size: 1rem * 0.6;
+    }
+    @include media-breakpoint-up(ipse) {
+      font-size: 1rem * 0.8;
+    }
+    @include media-breakpoint-up(sm) {
+      font-size: 1rem;
+    }
+  }
+}

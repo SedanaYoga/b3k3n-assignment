@@ -21,7 +21,9 @@ const SearchComp = () => {
   }
 
   const resetQueryHandler = () => {
+    console.log('hello')
     searchBooks('')
+    setQueryInput('')
   }
 
   useEffect(() => {
