@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+<div id="top"></div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h3 align="center">B3k3n Service for SejutaCita</h3>
+  <img src="https://sejutacita.id/static/media/logo-bg-new.14982478.png" alt="logo" width="200">
+  <p align="center">
+    Web Adaptation from Booku feature in SejutaCita App
 
-## Available Scripts
+  </p>
+</div>
 
-In the project directory, you can run:
+<!-- ABOUT THE PROJECT -->
 
-### `npm start`
+# About The Project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+So the project is quite simple, I was assigned to develop Booku feature from SejutaCita app which is still only available in mobile app then migrate the data from API provided to be a complete desktop website.
+![Preview][preview]
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm test`
+## Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The following lists show my development stack:
 
-### `npm run build`
+### Frontend Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [React](https://reactjs.org/)
+- [Sass](https://sass-lang.com/)
+- [React Bootstrap](https://react-bootstrap.github.io/)
+- [Axios](https://axios-http.com/docs/intro)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- API Provided
 
-### `npm run eject`
+### Development Tools:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- [Ubuntu 20.04](https://ubuntu.com/)
+- [Git](https://git-scm.com/)
+- [Neovim](https://neovim.io/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## What I've learnt?
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Consuming API with CORS and its limitation**: the API provided by task requester is not as nice as I thought, I could spent my whole night thinking about the solution of API endpoint with CORS restriction. I found the solution when I checked my older project and I forgot about I need to set proxy in `package.json`. Then I use `axios` for enhance my experience in retrieving data.
+- **Building Context API with 4 Reducers**: for a small project like this, I managed to handle Global State through Context API built in the React library. Combine it with useEffect and the newest optional channing by modern javascript, always makes me smile :)
+- **Other fun features**: mandatory requirements made me rethink about my initial design, for example, when I look into pagination feature and search feature, there're a lot of things going on there. Since we have to worry about how we manage page after querying the data. All feature must be connected and sure, lots of bugs need to be fixed.
 
-## Learn More
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- GETTING STARTED -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Getting Started
 
-### Code Splitting
+## The Feature
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Responsive UI, sass helped me a lot here
+- Support pagination, simple pagination attached with next, prev, and 3 numbers
+- Bookmark feature that save bookmark books to the local storage
+- Search books data in each category
 
-### Analyzing the Bundle Size
+## Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If you want to edit the code, you need to have `nodejs` and `NPM`.
 
-### Making a Progressive Web App
+- Install all dependencies by this command if you already get node and npm installed in your system.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```sh
+npm install
+```
 
-### Advanced Configuration
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Usage
 
-### Deployment
+- You need to install node js to install and start the react server.
+  ```sh
+  npm start
+  ```
+- Development mode will be up and running in `localhost:3000` in your browser
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm run build` fails to minify
+# Space for Improvement in Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- API data needs to be served in JSON format, I found that the Categories API is still using `text/plain` format
+- It would be better if there's a search API or data length API so we can get the queried books directly from API, for this application, the search feature is still querying books from all data that has been retrieved in the initial fetch. This make the application slow.
+- For the Book API, the page and size query parameter seems redundant since we can make page functionality in frontend side. Size is enough in my opinion.
+- There's should be an error message returned from the API if we haven't set the query parameters. At least 404 code type of response. This will enhance error handling from both back and front end.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTACT -->
+
+## Contact
+
+Sedana Yoga - [Linked In](www.linkedin.com/in/sedanayoga)
+Sedana Yoga - [Twitter](https://twitter.com/Cok_Yoga)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[preview]: docs/preview.gif
